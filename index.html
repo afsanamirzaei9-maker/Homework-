@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DevFlow — مدیریت جریان کاری تیم‌های توسعه</title>
+
+<link href="https://fonts.cdnfonts.com/css/iranyekan" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f7f8fc;
+  --card: #ffffff;
+  --ink: #172033;
+  --muted: #697386;
+  --line: #e7eaf1;
+  --purple: #635bff;
+  --soft: #efefff;
+  --green: #16866a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'IRANYekan', Tahoma, Arial, sans-serif;
+  line-height: 1.85;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.wrap {
+  width: min(1100px, calc(100% - 36px));
+  margin: auto;
+}
+
+/* Navigation */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(247, 248, 252, 0.94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+nav {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.logo {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  background: var(--purple);
+  color: white;
+  border-radius: 13px;
+}
+
+.links {
+  display: flex;
+  gap: 24px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.links a:hover {
+  color: var(--purple);
+}
+
+.navbuttons {
+  display: flex;
+  gap: 8px;
+}
+
+.lang,
+.menu {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 7px 12px;
+  color: var(--ink);
+}
+
+.menu {
+  display: none;
+}
+
+/* Hero */
+
+.hero {
+  padding: 75px 0 55px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 35px;
+  align-items: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 30px;
+  background: var(--soft);
+  color: var(--purple);
+  font-size: 0.83rem;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 1.3;
+  letter-spacing: -1.5px;
+  margin: 17px 0;
+}
+
+.accent {
+  color: var(--purple);
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 1.02rem;
+  margin: 0 0 25px;
+  max-width: 760px;
+}
+
+.actions {
+  display: flex;
+  gap: 11px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 11px 17px;
+  border-radius: 12px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.primary {
+  background: var(--purple);
+  color: white;
+  box-shadow: 0 8px 20px rgba(99, 91, 255, 0.19);
+}
+
+.secondary {
+  background: white;
+  border: 1px solid var(--line);
+}
+
+.note {
+  color: #8a93a3;
+  font-size: 0.8rem;
+  margin-top: 14px;
+}
+
+/* Sections */
+
+section {
+  padding: 58px 0;
+}
+
+.heading {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 30px;
+}
+
+.kicker {
+  font-size: 0.82rem;
+  font-weight: bold;
+  color: var(--purple);
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1.5;
+  margin: 7px 0;
+}
+
+.heading p,
+.card p,
+.panel li,
+.step p {
+  color: var(--muted);
+}
+
+.heading p {
+  margin: 0;
+}
+
+.white {
+  background: white;
+  border-block: 1px solid var(--line);
+}
+
+/* Cards */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 23px;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(25, 35, 65, 0.05);
+}
+
+.icon {
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  background: var(--soft);
+  color: var(--purple);
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  margin-bottom: 13px;
+}
+
+.card h3,
+.step h3 {
+  margin: 0 0 7px;
+  font-size: 1.03rem;
+}
+
+.card p,
+.step p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Problems */
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.panel {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.panel h3 {
+  margin: 0 0 12px;
+}
+
+.panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.panel li {
+  padding: 7px 25px 7px 0;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.panel li::before {
+  content: "✓";
+  position: absolute;
+  right: 0;
+  color: var(--green);
+  font-weight: bold;
+}
+
+[dir="ltr"] .panel li {
+  padding: 7px 0 7px 25px;
+}
+
+[dir="ltr"] .panel li::before {
+  right: auto;
+  left: 0;
+}
+
+/* Design thinking stages */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 13px;
+}
+
+.step {
+  padding: 20px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+}
+
+.num {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--purple);
+  color: white;
+  font-weight: bold;
+  margin-bottom: 13px;
+}
+
+/* Prototype */
+
+.prototype-images {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.prototype-images figure {
+  margin: 0;
+  overflow: hidden;
+}
+
+.prototype-images img {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 180px;
+  object-fit: contain;
+  background: #f2f3f8;
+  border-radius: 12px;
+}
+
+.prototype-images figcaption {
+  padding-top: 12px;
+  font-weight: bold;
+}
+
+/* Product overview mockup */
+
+.mock {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 23px;
+  padding: 20px;
+  box-shadow: 0 18px 45px rgba(25, 35, 65, 0.06);
+}
+
+.mockhead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.avatars {
+  display: flex;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e5e7ff;
+  color: #5148c9;
+  border: 2px solid white;
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  margin-inline-start: -6px;
+}
+
+.progress {
+  background: #f8f8ff;
+  border: 1px solid #eeedff;
+  padding: 14px;
+  border-radius: 15px;
+  margin-bottom: 12px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.bar {
+  height: 7px;
+  background: #e5e7f1;
+  border-radius: 20px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.fill {
+  width: 68%;
+  height: 100%;
+  background: var(--purple);
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-top: 9px;
+  font-size: 0.82rem;
+}
+
+.check {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  border: 1px solid #cbd1df;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+}
+
+.checked {
+  background: var(--purple);
+  color: white;
+  border-color: var(--purple);
+}
+
+.taskname {
+  flex: 1;
+  font-weight: bold;
+}
+
+.tag {
+  font-size: 0.7rem;
+  color: var(--purple);
+  background: var(--soft);
+  padding: 3px 7px;
+  border-radius: 7px;
+  white-space: nowrap;
+}
+
+/* Footer */
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 25px 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.foot strong {
+  color: var(--ink);
+}
+
+/* Responsive */
+
+@media (max-width: 850px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .wrap {
+    width: calc(100% - 28px);
+  }
+
+  nav {
+    min-height: 65px;
+  }
+
+  .links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    inset-inline: 14px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 12px 35px rgba(25, 35, 65, 0.07);
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .links.open {
+    display: flex;
+  }
+
+  .menu {
+    display: block;
+  }
+
+  .hero {
+    padding: 45px 0 30px;
+  }
+
+  section {
+    padding: 43px 0;
+  }
+
+  .cards,
+  .panels,
+  .steps,
+  .prototype-images {
+    grid-template-columns: 1fr;
+  }
+
+  .mock {
+    padding: 13px;
+  }
+
+  .tag {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="wrap">
+    <a class="brand" href="#home">
+      <span class="logo">D</span>
+      <span>DevFlow</span>
+    </a>
+
+    <div class="links" id="links">
+      <a href="#empathize" data-t="navEmp">همدلی</a>
+      <a href="#problems" data-t="navDefine">تعریف مسئله</a>
+      <a href="#ideas" data-t="navIdeate">ایده‌پردازی</a>
+      <a href="#prototype" data-t="navProto">نمونه‌سازی</a>
+    </div>
+
+    <div class="navbuttons">
+      <button class="lang" id="language">EN</button>
+      <button class="menu" id="menu" aria-label="باز کردن منو">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<!-- Hero section -->
+
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge" data-t="badge">کارخانگی نخست UI/UX</span>
+
+      <h1 data-t="title">
+        هر وظیفه،<br>
+        <span class="accent">یک گام روشن</span>
+      </h1>
+
+      <p class="lead" data-t="intro">
+        DevFlow یک ایده برای مدیریت جریان کاری تیم‌های توسعه وب است؛
+        جایی که مدیر بتواند کارها را پیگیری کند و اعضای تیم بدانند
+        چه کاری را در چه مرحله‌ای انجام دهند.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href="#journey" data-t="explore">
+          آشنایی با محصول ←
+        </a>
+
+        <a class="btn secondary" href="#prototype" data-t="view">
+          دیدن طرح اولیه
+        </a>
+      </div>
+
+      <p class="note" data-t="note">
+        این محصول در مرحله بررسی مسئله و ساخت ایده‌های نخستین است.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Design thinking journey -->
+
+<section id="journey" class="white">
+  <div class="wrap">
+
+    <div class="heading">
+      <span class="kicker" data-t="journeyK">مسیر تفکر طراحی</span>
+
+      <h2 data-t="journeyH">
+        اولین کارخانگی من: ایجاد و حل مسئله با استفاده از تفکر طراحی
+      </h2>
+
+      <p data-t="journeyP">
+        این نخستین کارخانگی من در بخش UI/UX است. در این کار، یک مسئله را
+        با استفاده از روش تفکر طراحی بررسی کردم و در چهار مرحله پیش رفتم.
+        جزئیات هر مرحله در بخش‌های بعدی آمده است.
+      </p>
+    </div>
+
+    <div class="steps">
+      <article class="step">
+        <div class="num">01</div>
+        <h3 data-t="stage1">همدلی (Empathize)</h3>
+        <p data-t="stage1p">
+          شناخت تجربه‌ها و دشواری‌های مدیر پروژه و اعضای تیم.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="num">02</div>
+        <h3 data-t="stage2">تعریف مسئله (Define)</h3>
+        <p data-t="stage2p">
+          مشخص‌کردن مسئله‌های اصلی و نیازهای کاربران.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="num">03</div>
+        <h3 data-t="stage3">ایده‌پردازی (Ideate)</h3>
+        <p data-t="stage3p">
+          پیداکردن راه‌حل‌های گوناگون برای مسئله‌ها.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="num">04</div>
+        <h3 data-t="stage4">نمونه‌سازی (Prototype)</h3>
+        <p data-t="stage4p">
+          ترسیم طرح نخستین محصول و آماده‌سازی آن برای بررسی بیشتر.
+        </p>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- Empathize -->
+
+<section id="empathize">
+  <div class="wrap">
+    <div class="heading">
+      <span class="kicker" data-t="emK">
+        مرحله اول · همدلی (Empathize)
+      </span>
+
+      <h2 data-t="emH">شناخت تجربه کاربران</h2>
+
+      <p data-t="emP">
+        این مسئله‌ها بر بنیاد تجربه‌ام در کار تیمی از راه دور
+        و گفت‌وگو با یک مدیر پروژه شناسایی شده‌اند.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- About the product -->
+
+<section id="about">
+  <div class="wrap">
+
+    <div class="heading">
+      <span class="kicker" data-t="aboutK">درباره محصول</span>
+
+      <h2 data-t="aboutH">DevFlow قرار است چه کمکی کند؟</h2>
+
+      <p data-t="aboutP">
+        هدف این ایده، ساده‌تر کردن پیگیری کارها و روشن‌تر کردن
+        مراحل انجام وظایف در تیم‌های دورکار توسعه وب است.
+      </p>
+    </div>
+
+    <div class="cards">
+
+      <article class="card">
+        <div class="icon">☑</div>
+        <h3 data-t="c1h">وظایف روشن‌تر</h3>
+        <p data-t="c1p">
+          هر وظیفه مسئول، مهلت و مراحل مشخصی داشته باشد تا عضو تیم
+          بداند چه کاری از او انتظار می‌رود.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="icon">↗</div>
+        <h3 data-t="c2h">پیگیری آسان‌تر</h3>
+        <p data-t="c2p">
+          مدیر پروژه بتواند وضعیت کارها و پیشرفت تیم را
+          در یک فضای مشترک ببیند.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="icon">◎</div>
+        <h3 data-t="c3h">راهنمایی مرحله‌ای</h3>
+        <p data-t="c3p">
+          چک‌لیست هر وظیفه کمک کند اعضا مراحل انجام کار
+          و قدم بعدی را بهتر بشناسند.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Define: Problems -->
+
+<section class="white" id="problems">
+  <div class="wrap">
+
+    <div class="heading">
+      <span class="kicker" data-t="problemK">
+        مرحله دوم · تعریف مسئله (Define)
+      </span>
+
+      <h2 data-t="problemH">مسئله‌هایی که شناسایی کرده‌ام</h2>
+
+      <p data-t="problemP">
+        این مسئله‌ها از تجربهٔ کاری و گفت‌وگو با یک مدیر پروژه
+        شناسایی شده‌اند.
+      </p>
+    </div>
+
+    <div class="panels">
+
+      <article class="panel">
+        <h3 data-t="manager">برای مدیر پروژه</h3>
+
+        <ul>
+          <li data-t="m1">
+            پیگیری پیشرفت و وضعیت وظایف اعضا دشوار است.
+          </li>
+
+          <li data-t="m2">
+            وظایف، اولویت‌ها یا مهلت‌ها ممکن است فراموش شوند.
+          </li>
+
+          <li data-t="m3">
+            برای فهمیدن وضعیت کارها، پیام‌های مکرر لازم می‌شود.
+          </li>
+
+          <li data-t="m4">
+            تشخیص تأخیرها و موانع کاری همیشه آسان نیست.
+          </li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3 data-t="member">برای اعضای تیم</h3>
+
+        <ul>
+          <li data-t="u1">
+            گاهی مراحل انجام وظیفه یا قدم بعدی روشن نیست.
+          </li>
+
+          <li data-t="u2">
+            اطلاعات و فایل‌های موردنیاز ممکن است پراکنده باشند.
+          </li>
+
+          <li data-t="u3">
+            اعضا ممکن است مشکلات را به‌موقع مطرح نکنند.
+          </li>
+
+          <li data-t="u4">
+            آشنایی ناکافی با Git Workflow می‌تواند کار را دشوار کند.
+          </li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Ideate: Solutions -->
+
+<section id="ideas">
+  <div class="wrap">
+
+    <div class="heading">
+      <span class="kicker" data-t="ideasK">
+        مرحله سوم · ایده‌پردازی (Ideate)
+      </span>
+
+      <h2 data-t="ideasH">راه‌حل‌های اولیه</h2>
+
+      <p data-t="ideasP">
+        این‌ها پیشنهادهای اولیه‌اند؛ بعد از بررسی نیاز کاربران،
+        درباره نگه‌داشتن یا تغییرشان تصمیم می‌گیرم.
+      </p>
+    </div>
+
+    <div class="steps">
+
+      <article class="step">
+        <div class="num">01</div>
+        <h3 data-t="s1h">مدیریت وظایف</h3>
+        <p data-t="s1p">
+          ساخت و تخصیص وظیفه، تعیین مسئول، اولویت و مهلت انجام.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="num">02</div>
+        <h3 data-t="s2h">چک‌لیست مرحله‌ای</h3>
+        <p data-t="s2p">
+          نمایش مراحل کار و مشخص کردن کارهای انجام‌شده و باقی‌مانده.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="num">03</div>
+        <h3 data-t="s3h">نمای کلی پیشرفت</h3>
+        <p data-t="s3p">
+          مشاهده وضعیت وظایف و شناسایی کارهای عقب‌مانده.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="num">04</div>
+        <h3 data-t="s4h">راهنمای جریان کار</h3>
+        <p data-t="s4p">
+          راهنمایی اولیه برای مراحل کاری، از جمله Git Workflow.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Prototype -->
+
+<section id="prototype" class="white">
+  <div class="wrap">
+
+    <div class="heading">
+      <span class="kicker" data-t="protoK">
+        مرحله چهارم · نمونه‌سازی (Prototype)
+      </span>
+
+      <h2 data-t="protoH">طرح‌های نخستین محصول</h2>
+
+      <p data-t="protoP">
+        در این بخش دو تصویر از پروتوتایپ خود را اضافه می‌کنم.
+      </p>
+    </div>
+
+    <div class="cards prototype-images">
+
+      <figure class="card">
+        <img
+          src="prototype-1.jpg"
+          alt="Prototype view one"
+          loading="lazy"
+        >
+        <figcaption data-t="proto1">
+          نمای نخست پروتوتایپ
+        </figcaption>
+      </figure>
+
+      <figure class="card">
+        <img
+          src="prototype-2.jpg"
+          alt="Prototype view two"
+          loading="lazy"
+        >
+        <figcaption data-t="proto2">
+          نمای دوم پروتوتایپ
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- Product overview at the end -->
+
+<section id="overview">
+  <div class="wrap">
+
+    <div class="heading">
+      <span class="kicker" data-t="overviewK">
+        نمای کلی محصول
+      </span>
+
+      <h2 data-t="overviewH">DevFlow در یک نگاه</h2>
+
+      <p data-t="overviewP">
+        این یک تصویر مفهومی از نمای احتمالی محصول است؛
+        نه نسخه نهایی یا محصول ساخته‌شده.
+      </p>
+    </div>
+
+    <div class="mock">
+
+      <div class="mockhead">
+        <div>
+          <strong data-t="dash">نمای کلی پروژه</strong>
+          <div class="muted" data-t="subdash">
+            وب‌سایت جدید · تیم توسعه
+          </div>
+        </div>
+
+        <div class="avatars">
+          <span class="avatar">A</span>
+          <span class="avatar">M</span>
+          <span class="avatar">S</span>
+          <span class="avatar">+2</span>
+        </div>
+      </div>
+
+      <div class="progress">
+        <div class="row">
+          <span data-t="progress">پیشرفت وظایف</span>
+          <span>68%</span>
+        </div>
+
+        <div class="bar">
+          <div class="fill"></div>
+        </div>
+      </div>
+
+      <div class="task">
+        <span class="check checked">✓</span>
+
+        <div class="taskname">
+          <span data-t="task1">ساخت ساختار صفحات</span>
+          <div class="muted">
+            Frontend · <span data-t="done">انجام‌شده</span>
+          </div>
+        </div>
+
+        <span class="tag" data-t="done">انجام‌شده</span>
+      </div>
+
+      <div class="task">
+        <span class="check"></span>
+
+        <div class="taskname">
+          <span data-t="task2">پیاده‌سازی کامپوننت‌ها</span>
+          <div class="muted">
+            Frontend · <span data-t="doing">در حال انجام</span>
+          </div>
+        </div>
+
+        <span class="tag" data-t="doing">در حال انجام</span>
+      </div>
+
+      <div class="task">
+        <span class="check"></span>
+
+        <div class="taskname">
+          <span data-t="task3">بررسی و تست</span>
+          <div class="muted">
+            QA · <span data-t="notstarted">هنوز شروع نشده</span>
+          </div>
+        </div>
+
+        <span class="tag" data-t="pending">در انتظار</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <strong>DevFlow</strong>
+
+    <span data-t="footer">
+      کارخانگی نخست UI/UX · ایجاد و حل مسئله با تفکر طراحی
+    </span>
+
+    <span>Every Task, One Clear Step at a Time.</span>
+  </div>
+</footer>
+
+
+<script>
+const copy = {
+  fa: {
+    page: "DevFlow — مدیریت جریان کاری تیم‌های توسعه",
+
+    navEmp: "همدلی",
+    navDefine: "تعریف مسئله",
+    navIdeate: "ایده‌پردازی",
+    navProto: "نمونه‌سازی",
+
+    badge: "کارخانگی نخست UI/UX",
+    title: 'هر وظیفه،<br><span class="accent">یک گام روشن</span>',
+
+    intro: "DevFlow یک ایده برای مدیریت جریان کاری تیم‌های توسعه وب است؛ جایی که مدیر بتواند کارها را پیگیری کند و اعضای تیم بدانند چه کاری را در چه مرحله‌ای انجام دهند.",
+
+    explore: "آشنایی با محصول ←",
+    view: "دیدن طرح اولیه",
+    note: "این محصول در مرحله بررسی مسئله و ساخت ایده‌های نخستین است.",
+
+    journeyK: "مسیر تفکر طراحی",
+    journeyH: "اولین کارخانگی من: ایجاد و حل مسئله با استفاده از تفکر طراحی",
+    journeyP: "این نخستین کارخانگی من در بخش UI/UX است. در این کار، یک مسئله را با استفاده از روش تفکر طراحی بررسی کردم و در چهار مرحله پیش رفتم. جزئیات هر مرحله در بخش‌های بعدی آمده است.",
+
+    stage1: "همدلی (Empathize)",
+    stage1p: "شناخت تجربه‌ها و دشواری‌های مدیر پروژه و اعضای تیم.",
+
+    stage2: "تعریف مسئله (Define)",
+    stage2p: "مشخص‌کردن مسئله‌های اصلی و نیازهای کاربران.",
+
+    stage3: "ایده‌پردازی (Ideate)",
+    stage3p: "پیداکردن راه‌حل‌های گوناگون برای مسئله‌ها.",
+
+    stage4: "نمونه‌سازی (Prototype)",
+    stage4p: "ترسیم طرح نخستین محصول و آماده‌سازی آن برای بررسی بیشتر.",
+
+    emK: "مرحله اول · همدلی (Empathize)",
+    emH: "شناخت تجربه کاربران",
+    emP: "این مسئله‌ها بر بنیاد تجربه‌ام در کار تیمی از راه دور و گفت‌وگو با یک مدیر پروژه شناسایی شده‌اند.",
+
+    aboutK: "درباره محصول",
+    aboutH: "DevFlow قرار است چه کمکی کند؟",
+    aboutP: "هدف این ایده، ساده‌تر کردن پیگیری کارها و روشن‌تر کردن مراحل انجام وظایف در تیم‌های دورکار توسعه وب است.",
+
+    c1h: "وظایف روشن‌تر",
+    c1p: "هر وظیفه مسئول، مهلت و مراحل مشخصی داشته باشد تا عضو تیم بداند چه کاری از او انتظار می‌رود.",
+
+    c2h: "پیگیری آسان‌تر",
+    c2p: "مدیر پروژه بتواند وضعیت کارها و پیشرفت تیم را در یک فضای مشترک ببیند.",
+
+    c3h: "راهنمایی مرحله‌ای",
+    c3p: "چک‌لیست هر وظیفه کمک کند اعضا مراحل انجام کار و قدم بعدی را بهتر بشناسند.",
+
+    problemK: "مرحله دوم · تعریف مسئله (Define)",
+    problemH: "مسئله‌هایی که شناسایی کرده‌ام",
+    problemP: "این مسئله‌ها از تجربهٔ کاری و گفت‌وگو با یک مدیر پروژه شناسایی شده‌اند.",
+
+    manager: "برای مدیر پروژه",
+    m1: "پیگیری پیشرفت و وضعیت وظایف اعضا دشوار است.",
+    m2: "وظایف، اولویت‌ها یا مهلت‌ها ممکن است فراموش شوند.",
+    m3: "برای فهمیدن وضعیت کارها، پیام‌های مکرر لازم می‌شود.",
+    m4: "تشخیص تأخیرها و موانع کاری همیشه آسان نیست.",
+
+    member: "برای اعضای تیم",
+    u1: "گاهی مراحل انجام وظیفه یا قدم بعدی روشن نیست.",
+    u2: "اطلاعات و فایل‌های موردنیاز ممکن است پراکنده باشند.",
+    u3: "اعضا ممکن است مشکلات را به‌موقع مطرح نکنند.",
+    u4: "آشنایی ناکافی با Git Workflow می‌تواند کار را دشوار کند.",
+
+    ideasK: "مرحله سوم · ایده‌پردازی (Ideate)",
+    ideasH: "راه‌حل‌های اولیه",
+    ideasP: "این‌ها پیشنهادهای اولیه‌اند؛ بعد از بررسی نیاز کاربران، درباره نگه‌داشتن یا تغییرشان تصمیم می‌گیرم.",
+
+    s1h: "مدیریت وظایف",
+    s1p: "ساخت و تخصیص وظیفه، تعیین مسئول، اولویت و مهلت انجام.",
+
+    s2h: "چک‌لیست مرحله‌ای",
+    s2p: "نمایش مراحل کار و مشخص کردن کارهای انجام‌شده و باقی‌مانده.",
+
+    s3h: "نمای کلی پیشرفت",
+    s3p: "مشاهده وضعیت وظایف و شناسایی کارهای عقب‌مانده.",
+
+    s4h: "راهنمای جریان کار",
+    s4p: "راهنمایی اولیه برای مراحل کاری، از جمله Git Workflow.",
+
+    protoK: "مرحله چهارم · نمونه‌سازی (Prototype)",
+    protoH: "طرح‌های نخستین محصول",
+    protoP: "در این بخش دو تصویر از پروتوتایپ خود را اضافه می‌کنم.",
+
+    proto1: "نمای نخست پروتوتایپ",
+    proto2: "نمای دوم پروتوتایپ",
+
+    overviewK: "نمای کلی محصول",
+    overviewH: "DevFlow در یک نگاه",
+    overviewP: "این یک تصویر مفهومی از نمای احتمالی محصول است؛ نه نسخه نهایی یا محصول ساخته‌شده.",
+
+    dash: "نمای کلی پروژه",
+    subdash: "وب‌سایت جدید · تیم توسعه",
+    progress: "پیشرفت وظایف",
+    task1: "ساخت ساختار صفحات",
+    task2: "پیاده‌سازی کامپوننت‌ها",
+    task3: "بررسی و تست",
+
+    done: "انجام‌شده",
+    doing: "در حال انجام",
+    notstarted: "هنوز شروع نشده",
+    pending: "در انتظار",
+
+    footer: "کارخانگی نخست UI/UX · ایجاد و حل مسئله با تفکر طراحی"
+  },
+
+  en: {
+    page: "DevFlow — Workflow Management for Development Teams",
+
+    navEmp: "Empathize",
+    navDefine: "Define",
+    navIdeate: "Ideate",
+    navProto: "Prototype",
+
+    badge: "My First UI/UX Homework",
+    title: 'Every task,<br><span class="accent">one clear step</span>',
+
+    intro: "DevFlow is an early concept for managing the workflow of web development teams. It helps project managers track work and helps team members understand what to do at each stage.",
+
+    explore: "Explore the product →",
+    view: "View the prototype",
+    note: "This product is in the early problem-discovery and ideation stage.",
+
+    journeyK: "Design Thinking Process",
+    journeyH: "My First Homework: Problem Creation and Solving Through Design Thinking",
+    journeyP: "This is my first UI/UX homework. I explored a problem using the design thinking process and progressed through four stages. Details of each stage are provided in the following sections.",
+
+    stage1: "Empathize",
+    stage1p: "Understand the experiences and challenges of the project manager and team members.",
+
+    stage2: "Define",
+    stage2p: "Identify the main problems and user needs.",
+
+    stage3: "Ideate",
+    stage3p: "Explore different possible solutions to the problems.",
+
+    stage4: "Prototype",
+    stage4p: "Sketch the initial product and prepare it for further review.",
+
+    emK: "Stage 1 · Empathize",
+    emH: "Understanding User Experiences",
+    emP: "The problems were identified through my remote teamwork experience and a conversation with a project manager.",
+
+    aboutK: "About the Product",
+    aboutH: "What Is DevFlow Meant to Help With?",
+    aboutP: "The idea is to make work easier to track and task steps clearer for remote web development teams.",
+
+    c1h: "Clearer Tasks",
+    c1p: "Each task has an owner, a deadline, and clear steps so team members know what is expected.",
+
+    c2h: "Easier Tracking",
+    c2p: "Project managers can see task status and team progress in one shared space.",
+
+    c3h: "Step-by-Step Guidance",
+    c3p: "A checklist helps team members understand task stages and what to do next.",
+
+    problemK: "Stage 2 · Define",
+    problemH: "Problems I Identified",
+    problemP: "These problems were identified through work experience and a conversation with a project manager.",
+
+    manager: "For Project Managers",
+    m1: "Tracking team members’ progress and task status can be difficult.",
+    m2: "Tasks, priorities, or deadlines can be forgotten.",
+    m3: "Frequent messages may be needed just to check task status.",
+    m4: "Delays and blockers are not always easy to spot.",
+
+    member: "For Team Members",
+    u1: "Task steps or the next action may not be clear.",
+    u2: "Required information and files can be scattered.",
+    u3: "Team members may not report blockers in time.",
+    u4: "Limited familiarity with Git Workflow can make tasks harder.",
+
+    ideasK: "Stage 3 · Ideate",
+    ideasH: "Initial Solution Ideas",
+    ideasP: "These are early ideas. They may change after learning more about users’ needs.",
+
+    s1h: "Task Management",
+    s1p: "Create and assign tasks, and set owners, priorities, and deadlines.",
+
+    s2h: "Step Checklist",
+    s2p: "Show task steps and mark what is done and what remains.",
+
+    s3h: "Progress Overview",
+    s3p: "View task status and identify overdue work.",
+
+    s4h: "Workflow Guidance",
+    s4p: "Provide basic guidance for work stages, including Git Workflow.",
+
+    protoK: "Stage 4 · Prototype",
+    protoH: "Initial Product Designs",
+    protoP: "This section contains two images of my initial product prototype.",
+
+    proto1: "Prototype View One",
+    proto2: "Prototype View Two",
+
+    overviewK: "Product Overview",
+    overviewH: "DevFlow at a Glance",
+    overviewP: "This is a conceptual view of a possible product interface, not a final or built product.",
+
+    dash: "Project Overview",
+    subdash: "New Website · Development Team",
+    progress: "Task Progress",
+    task1: "Build Page Structure",
+    task2: "Implement Components",
+    task3: "Review and Testing",
+
+    done: "Completed",
+    doing: "In Progress",
+    notstarted: "Not Started",
+    pending: "Pending",
+
+    footer: "My First UI/UX Homework · Problem Solving Through Design Thinking"
+  }
+};
+
+let lang = "fa";
+
+const toggle = document.querySelector("#language");
+const links = document.querySelector("#links");
+
+function setLang(next) {
+  lang = next;
+
+  document.documentElement.lang = next;
+  document.documentElement.dir = next === "fa" ? "rtl" : "ltr";
+
+  document.title = copy[next].page;
+
+  document.querySelectorAll("[data-t]").forEach((element) => {
+    const key = element.dataset.t;
+
+    if (copy[next][key] !== undefined) {
+      element.innerHTML = copy[next][key];
+    }
+  });
+
+  toggle.textContent = next === "fa" ? "EN" : "دری";
+
+  try {
+    localStorage.setItem("devflow-lang", next);
+  } catch (error) {
+    // Language preference may not be available in private browsing.
+  }
+
+  links.classList.remove("open");
+}
+
+toggle.addEventListener("click", () => {
+  setLang(lang === "fa" ? "en" : "fa");
+});
+
+document.querySelector("#menu").addEventListener("click", () => {
+  links.classList.toggle("open");
+});
+
+links.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    links.classList.remove("open");
+  });
+});
+
+let saved = "fa";
+
+try {
+  saved = localStorage.getItem("devflow-lang") || "fa";
+} catch (error) {
+  // Use Dari as the default language.
+}
+
+setLang(saved === "en" ? "en" : "fa");
+</script>
+
+</body>
+</html>
